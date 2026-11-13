@@ -1,0 +1,140 @@
+<div class="auth-page">
+  <aside class="brand-panel">
+    <div class="brand-panel__glow"></div>
+    <div class="brand-panel__grid"></div>
+
+    <div class="brand-panel__content">
+      <app-brand-logo size="hero" tone="onDark" [flush]="true" />
+
+      <div class="brand-panel__copy">
+        <h1 class="brand-panel__title">{{ 'LOGIN.BRAND_TAGLINE' | translate }}</h1>
+        <p class="brand-panel__subtitle">{{ 'LOGIN.BRAND_SUBTITLE' | translate }}</p>
+      </div>
+
+      <ul class="brand-panel__points">
+        <li>{{ 'LOGIN.POINT_FAST' | translate }}</li>
+        <li>{{ 'LOGIN.POINT_TRUST' | translate }}</li>
+        <li>{{ 'LOGIN.POINT_LOCAL' | translate }}</li>
+      </ul>
+    </div>
+  </aside>
+
+  <section class="form-panel">
+    <div class="auth-card">
+      <div class="auth-card__top">
+        <app-language-switcher />
+      </div>
+
+      <header class="auth-card__header">
+        <h2>{{ 'LOGIN.WELCOME' | translate }}</h2>
+        <p>{{ 'LOGIN.SUBTITLE' | translate }}</p>
+      </header>
+
+      <form class="auth-form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+        <div class="field" [class.field--error]="form.controls.email.touched && form.controls.email.invalid">
+          <label for="login-email">{{ 'LOGIN.EMAIL' | translate }}</label>
+          <div class="input-wrap">
+            <span class="input-wrap__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8">
+                <rect x="3" y="5" width="18" height="14" rx="2"/>
+                <path d="M3 7l9 7 9-7"/>
+              </svg>
+            </span>
+            <input
+              id="login-email"
+              formControlName="email"
+              type="email"
+              autocomplete="email"
+              [placeholder]="'LOGIN.EMAIL_PLACEHOLDER' | translate"
+            />
+          </div>
+          @if (form.controls.email.touched && form.controls.email.hasError('required')) {
+            <span class="field__hint">{{ 'LOGIN.EMAIL_REQUIRED' | translate }}</span>
+          } @else if (form.controls.email.touched && form.controls.email.hasError('email')) {
+            <span class="field__hint">{{ 'LOGIN.EMAIL_INVALID' | translate }}</span>
+          }
+        </div>
+
+        <div class="field" [class.field--error]="form.controls.password.touched && form.controls.password.invalid">
+          <div class="field__label-row">
+            <label for="login-password">{{ 'LOGIN.PASSWORD' | translate }}</label>
+            <a class="forgot-link" href="#" (click)="$event.preventDefault()">{{ 'LOGIN.FORGOT_PASSWORD' | translate }}</a>
+          </div>
+          <div class="input-wrap">
+            <span class="input-wrap__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8">
+                <rect x="5" y="10" width="14" height="10" rx="2"/>
+                <path d="M8 10V7a4 4 0 018 0v3"/>
+              </svg>
+            </span>
+            <input
+              id="login-password"
+              formControlName="password"
+              [type]="showPassword ? 'text' : 'password'"
+              autocomplete="current-password"
+              [placeholder]="'LOGIN.PASSWORD_PLACEHOLDER' | translate"
+            />
+            <button
+              type="button"
+              class="input-wrap__toggle"
+              (click)="togglePassword()"
+              [attr.aria-label]="showPassword ? 'Hide password' : 'Show password'"
+            >
+              @if (showPassword) {
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M3 3l18 18"/>
+                  <path d="M10.6 10.6a2 2 0 002.8 2.8"/>
+                  <path d="M9.9 5.1A10.4 10.4 0 0121 12c-.6 1-1.4 2-2.4 2.8"/>
+                  <path d="M6.1 6.1C4.5 7.4 3.3 9.1 2.5 12c1.8 4.5 6 7.5 9.5 7.5 1.5 0 3-.4 4.3-1.2"/>
+                </svg>
+              } @else {
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M2.5 12C4.3 7.5 8.5 4.5 12 4.5S19.7 7.5 21.5 12C19.7 16.5 15.5 19.5 12 19.5S4.3 16.5 2.5 12z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+              }
+            </button>
+          </div>
+          @if (form.controls.password.touched && form.controls.password.hasError('required')) {
+            <span class="field__hint">{{ 'LOGIN.PASSWORD_REQUIRED' | translate }}</span>
+          }
+        </div>
+
+        @if (error) {
+          <div class="form-error" role="alert">{{ error }}</div>
+        }
+
+        <button class="btn-primary" type="submit" [disabled]="loading">
+          @if (loading) {
+            <span class="btn-primary__spinner" aria-hidden="true"></span>
+            {{ 'COMMON.WAITING' | translate }}
+          } @else {
+            {{ 'LOGIN.SUBMIT' | translate }}
+          }
+        </button>
+      </form>
+
+      <div class="divider"><span>{{ 'COMMON.OR' | translate }}</span></div>
+
+      <div class="register-links">
+        <a routerLink="/register/customer" class="register-links__item">
+          <span class="register-links__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="8" r="3.5"/>
+              <path d="M5 19c1.5-3.5 4-5 7-5s5.5 1.5 7 5"/>
+            </svg>
+          </span>
+          <span>{{ 'LOGIN.REGISTER_CUSTOMER' | translate }}</span>
+        </a>
+        <a routerLink="/register/driver" class="register-links__item">
+          <span class="register-links__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M3 15h10l3-6h4v6h1.5v2h-2a2 2 0 11-4 0H9a2 2 0 11-4 0H3v-2z"/>
+            </svg>
+          </span>
+          <span>{{ 'LOGIN.REGISTER_DRIVER' | translate }}</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</div>

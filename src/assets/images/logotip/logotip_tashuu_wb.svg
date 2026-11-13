@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360" fill="none" role="img" aria-label="Tashuu">
+  <!-- White + electric blue — use on dark UI -->
+  <g transform="translate(48 36)">
+    <!-- speed lines -->
+    <rect x="4" y="72" width="58" height="12" rx="6" fill="#2F6BFF"/>
+    <rect x="14" y="94" width="48" height="12" rx="6" fill="#2F6BFF"/>
+    <rect x="24" y="116" width="38" height="12" rx="6" fill="#2F6BFF"/>
+
+    <!-- truck -->
+    <path d="M74 88h102c4 0 7 3 7 7v52H74V88z" fill="#FFFFFF"/>
+    <path d="M176 68h36c5 0 9 4 9 9v28l22 0 18 24v18h-85V68z" fill="#FFFFFF"/>
+    <rect x="188" y="80" width="32" height="22" rx="4" fill="#2F6BFF" opacity="0.28"/>
+
+    <!-- bumper / detail -->
+    <rect x="74" y="128" width="183" height="12" rx="2" fill="#FFFFFF"/>
+
+    <!-- wheels -->
+    <circle cx="108" cy="148" r="18" fill="#FFFFFF"/>
+    <circle cx="108" cy="148" r="8" fill="#2F6BFF"/>
+    <circle cx="208" cy="148" r="18" fill="#FFFFFF"/>
+    <circle cx="208" cy="148" r="8" fill="#2F6BFF"/>
+
+    <!-- location pin -->
+    <path d="M148 38c-26 0-47 20.5-47 45.8C101 118 148 158 148 158s47-40 47-74.2C195 58.5 174 38 148 38z" fill="#2F6BFF"/>
+    <circle cx="148" cy="82" r="16" fill="#05070D"/>
+  </g>
+
+  <text x="180" y="300" text-anchor="middle" fill="#FFFFFF"
+        font-family="Manrope, 'Plus Jakarta Sans', Arial, sans-serif"
+        font-size="58" font-weight="700" letter-spacing="-1.2">Tashuu</text>
+</svg>
