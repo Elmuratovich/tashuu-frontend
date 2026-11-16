@@ -1,0 +1,9 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tashuu-frontend
+    restart: always
+    ports:
+      - "4200:80"
